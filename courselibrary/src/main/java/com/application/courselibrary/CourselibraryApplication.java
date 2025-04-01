@@ -9,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import java.awt.Desktop;
+import java.net.URI;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
 
 @SpringBootApplication
 public class CourselibraryApplication {
@@ -47,5 +50,22 @@ public class CourselibraryApplication {
 			book3.addPublisher(publisher3);
 			bookService.createBook(book3);
 		};
+	}
+
+	@org.springframework.context.event.EventListener(ApplicationReadyEvent.class)
+	public void openBrowser() {
+		try {
+			String url = "http://localhost:8084/books";
+			if (Desktop.isDesktopSupported()) {
+				Desktop.getDesktop().browse(new URI(url));
+			} else {
+				// If Desktop is not supported, fallback to system command
+				Runtime.getRuntime().exec("cmd /c start chrome " + url); // Windows
+				// Runtime.getRuntime().exec("open -a Google\\ Chrome " + url); // MacOS
+				// Runtime.getRuntime().exec("google-chrome " + url); // Linux
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

@@ -12,16 +12,20 @@ import java.util.List;
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
-    public List<Book> findAllBooks(){
+
+    public List<Book> findAllBooks() {
         return bookRepository.findAll();
     }
-    public Book findBookById(Long id){
-        Book book = bookRepository.findById(id).orElseThrow(()-> new RuntimeException("Book NOT FOUND"));
+
+    public Book findBookById(Long id) {
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book NOT FOUND"));
         return book;
     }
-    public void createBook(Book book){
+
+    public void createBook(Book book) {
         bookRepository.save(book);
     }
+
     @Transactional
     public void updateBook(Book book) {
         Book existingBook = bookRepository.findById(book.getId())
@@ -38,8 +42,8 @@ public class BookService {
     }
 
 
-    public void deleteBook(Long id){
-        Book book = bookRepository.findById(id).orElseThrow(()-> new RuntimeException("Book NOT FOUND"));
+    public void deleteBook(Long id) {
+        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book NOT FOUND"));
         bookRepository.deleteById(book.getId());
 
     }

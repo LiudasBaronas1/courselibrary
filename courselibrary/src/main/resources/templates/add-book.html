@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Update Book</title>
+    <title>Add Book</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -13,14 +13,14 @@
 </head>
 
 <body>
-<div th:replace="~{fragments/header :: header}"></div>
+<div th:insert="~{fragments/header :: header}"></div>
 <div class="container my-2">
     <div class="card">
         <div class="card-body">
-            <form action="#" th:action="@{/save-update/{id}(id=${book.id})}" th:object="${book}" method="post">
+            <form action="#" th:action="@{/save-book}" th:object="${book}" method="post">
                 <div class="row">
                     <div class="form-group col-md-8">
-                        <label for="isbn" class="col-form-label">ISBN</label>
+                        <label for="name" class="col-form-label">ISBN</label>
                         <input type="text" th:field="*{isbn}" class="form-control" id="isbn"
                                placeholder="ISBN"/>
                     </div>
@@ -32,7 +32,7 @@
                     </div>
 
                     <div class="form-group col-md-8">
-                        <label for="description" class="col-form-label">Book Description</label>
+                        <label for="name" class="col-form-label">Book Description</label>
                         <input type="text" th:field="*{description}" class="form-control" id="description"
                                placeholder="Book Description"/>
                     </div>
