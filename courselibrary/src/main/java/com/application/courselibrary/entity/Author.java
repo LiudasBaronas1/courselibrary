@@ -23,7 +23,7 @@ public class Author {
     @Column(name = "description",length = 250,nullable = false)
     private String description;
 
-    @ManyToMany(mappedBy = "authors",cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "authors")
     private Set<Book> books = new HashSet<>();
 
     public Author(String name, String description) {

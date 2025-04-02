@@ -25,21 +25,21 @@ public class Book {
     @Column(name = "description",length = 50,nullable = false)
     private String description;
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     @JoinTable(name = "books_authors",
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns ={@JoinColumn(name = "author_id")}
     )
     private Set<Author> authors = new HashSet<Author>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     @JoinTable(name = "books_categories",
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns ={@JoinColumn(name = "categories_id")}
     )
     private Set<Category> categories = new HashSet<>();
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany(cascade = {CascadeType.PERSIST})
     @JoinTable(name = "books_publishers",
             joinColumns = {@JoinColumn(name = "book_id")},
             inverseJoinColumns ={@JoinColumn(name = "publishers_id")}

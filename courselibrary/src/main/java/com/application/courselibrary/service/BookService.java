@@ -1,6 +1,7 @@
 package com.application.courselibrary.service;
 
 import com.application.courselibrary.entity.Book;
+import com.application.courselibrary.mapper.BookMapper;
 import com.application.courselibrary.repository.BookRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +13,18 @@ import java.util.List;
 public class BookService {
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private BookMapper bookMapper;
 
     public List<Book> findAllBooks() {
-        return bookRepository.findAll();
+//        return bookRepository.findAll();
+        return bookMapper.getAllBooks();
     }
 
     public Book findBookById(Long id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book NOT FOUND"));
-        return book;
+//        Book book = bookRepository.findById(id).orElseThrow(() -> new RuntimeException("Book NOT FOUND"));
+//        return book;
+        return bookMapper.getBookById(id);
     }
 
     public void createBook(Book book) {
